@@ -1,6 +1,6 @@
 # Задание: Обновление ядра и сборка образа системы
 ## Развертывание "чистого" образа ОС и обновление ядра вручную
-*При выполнении данного задания в качесмтве ОС будет использоваться Rocky Linux 9.1*
+*При выполнении данного задания в качестве ОС будет использоваться Rocky Linux 9.1*
 
 Создадим папку под выполнение данного задания
 
@@ -68,8 +68,10 @@ end
 Полученный вывод говорит об успешном завершении процесса
 
 ```
+...
 ==> Builds finished. The artifacts of successful builds are:
 --> virtualbox-iso.virtualbox: 'virtualbox' provider box: Rocky9.1-x86_64-base.box
+[kgeor@rocky-ls packer]$
 ```
 После успешного завершения сборки и экспорта образа в указанный формат .box проверим корректность полученного образа
 
@@ -98,4 +100,8 @@ Activate the web console with: systemctl enable --now cockpit.socket
 Vagrantfile  packer  readme.md  rocky.json
 ```
 Осталось залить образ в Vagrant Cloud, а конфигурационные файлы в репозиторий Github.
+```
+vagrant cloud auth login
+vagrant cloud publish --release kgeor/rocky9-kernel6 1.0 virtualbox Rocky9.1-x86_64-base.box
+```
 **PROFIT!**
